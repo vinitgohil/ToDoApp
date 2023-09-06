@@ -57,5 +57,3 @@ def delete_taskfile(fileName='todos.txt'):
 
 if __name__ == "__main__":
     print("Executing the functions")
-
-
