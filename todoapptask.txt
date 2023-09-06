@@ -2,7 +2,7 @@ Define app framework
 Define user inputs
 Build program logic
 Perform unit test
-Optimize code
+Clean code
 Perform more unit testing
 Define functions
 Replace redundant code with function calls
@@ -11,4 +11,5 @@ Update functions to use default arguments
 Update folder hieracrchy and include functions under one directory
 Test calls using import from other folders/files
 Import standard modules for further code optimization
-Master python!
+Develope graphical user interface
+Optimize gui
