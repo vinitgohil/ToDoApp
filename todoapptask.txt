@@ -11,3 +11,4 @@ Update functions to use default arguments
 Update folder hieracrchy and include functions under one directory
 Test calls using import from other folders/files
 Import standard modules for further code optimization
+Master python!
