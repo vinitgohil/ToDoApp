@@ -2,7 +2,6 @@ Define app framework
 Define user inputs
 Build program logic
 Perform unit test
-Clean code
 Perform more unit testing
 Define functions
 Replace redundant code with function calls
