@@ -5,16 +5,28 @@ label = sg.Text("Type in a To-Do Task")
 
 # Add an input text instance and add a key for the to-do task to add
 input_box  = sg.InputText(tooltip="Enter a to-do task", key="TaskItem")
+create_file_box = sg.InputText("Create a TaskFile: ", key="FILENAME")
+
+create_file_button = sg.Button("Create File")
 add_button = sg.Button("Add")
+
+
 
 list_box = sg.Listbox(values=utils.read_taskfile(fileName="todoapptask.txt"), key='TaskITEMS',
                       enable_events=True, size=[45, 10])
 
 edit_button = sg.Button("Edit")
+complete_button = sg.Button("Complete")
+exit_button = sg.Button("Exit")
 
 appWindow = sg.Window("My To-do App",
-                      layout=[[label], [input_box, add_button], [list_box, edit_button]],
+                      layout=[[label],
+                              [input_box, add_button],
+                              [list_box, edit_button, complete_button],
+                              [exit_button]],
                       font=('Helvetica', 12))
+
+
 while True:
     task, values = appWindow.read()
     print(1, task)
@@ -38,6 +50,17 @@ while True:
             todos[index] = new_task
             utils.write_taskfile(todos, fileName="todoapptask.txt")
             appWindow['TaskITEMS'].update(values=todos)
+
+        case "Complete":
+            complete_task = values['TaskITEMS'][0]
+            todos = utils.read_taskfile(fileName="todoapptask.txt")
+            todos.remove(complete_task)
+            utils.write_taskfile(todos, fileName="todoapptask.txt")
+            appWindow['TaskITEMS'].update(values=todos)
+            appWindow['TaskItem'].update(value="")
+
+        case "Exit":
+            break
 
         case 'TaskITEMS':
             appWindow['TaskItem'].update(value=values['TaskITEMS'][0])
