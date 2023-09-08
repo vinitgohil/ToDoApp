@@ -1,9 +1,11 @@
 import os
 
+FILENAME = "todotasks.txt"
+
 def strike(text):
     return ''.join([u'\u0336{}'.format(c) for c in text])
 
-def create_taskfile(fileName="todos.txt"):
+def create_taskfile(fileName=FILENAME):
     """
     Creates a default text file if one is not provided in the argument for to-do-items
     :param filename:
@@ -15,7 +17,7 @@ def create_taskfile(fileName="todos.txt"):
         pass
         return file
 
-def read_taskfile(fileName="todos.txt"):
+def read_taskfile(fileName=FILENAME):
     """
     Reads the text file created and returns a list of to-do-items
     :param fileName: filename
@@ -28,7 +30,7 @@ def read_taskfile(fileName="todos.txt"):
     return newfile
 
 # put the non-default parameter before default parameter (fileArg before filename)
-def write_taskfile(fileArg, fileName="todos.txt"):
+def write_taskfile(fileArg, fileName=FILENAME):
     """
     Writes tasks to the text file
     :param fileArg: a variable set for the file list
@@ -41,7 +43,7 @@ def write_taskfile(fileArg, fileName="todos.txt"):
     with open(fileName, 'w+') as file:
         file.writelines(fileArg)
 
-def delete_taskfile(fileName='todos.txt'):
+def delete_taskfile(fileName=FILENAME):
     """
     Deletes task file from the system
     :param fileName: name of file to be deleted

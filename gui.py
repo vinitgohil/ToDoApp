@@ -1,9 +1,16 @@
 from modules import utils
 import PySimpleGUI as sg
 import time
+import os
+
+FILENAME = "todotasks.txt"
+
+if not os.path.exists("todotasks.txt"):
+    utils.create_taskfile(fileName=FILENAME)
+    pass
 
 # Apply GUI Theme
-sg.theme("SystemDefault")
+# sg.theme("SystemDefault")
 
 
 # Define labels
@@ -19,7 +26,7 @@ add_button = sg.Button("Add")
 
 
 
-list_box = sg.Listbox(values=utils.read_taskfile(fileName="todoapptask.txt"), key='TaskITEMS',
+list_box = sg.Listbox(values=utils.read_taskfile(fileName=FILENAME), key='TaskITEMS',
                       enable_events=True, size=[45, 20])
 
 edit_button = sg.Button("Edit")
@@ -44,10 +51,10 @@ while True:
 
     match task:
         case "Add":
-            todos = utils.read_taskfile(fileName="todoapptask.txt")
+            todos = utils.read_taskfile(fileName=FILENAME)
             new_task = values['TaskItem'] + "\n"
             todos.append(new_task.capitalize())
-            utils.write_taskfile(todos, fileName="todoapptask.txt")
+            utils.write_taskfile(todos, fileName=FILENAME)
             appWindow['TaskITEMS'].update(values=todos)
 
         case "Edit":
@@ -55,10 +62,10 @@ while True:
                 edit_task = values['TaskITEMS'][0]
                 new_task = values['TaskItem'].capitalize()
 
-                todos = utils.read_taskfile(fileName="todoapptask.txt")
+                todos = utils.read_taskfile(fileName=FILENAME)
                 index = todos.index(edit_task)
                 todos[index] = new_task
-                utils.write_taskfile(todos, fileName="todoapptask.txt")
+                utils.write_taskfile(todos, fileName=FILENAME)
                 appWindow['TaskITEMS'].update(values=todos)
             except IndexError as e:
                 sg.Popup("Please select an Item for edit", font=('Helvetica', 12))
@@ -66,9 +73,9 @@ while True:
         case "Complete":
             try:
                 complete_task = values['TaskITEMS'][0]
-                todos = utils.read_taskfile(fileName="todoapptask.txt")
+                todos = utils.read_taskfile(fileName=FILENAME)
                 todos.remove(complete_task)
-                utils.write_taskfile(todos, fileName="todoapptask.txt")
+                utils.write_taskfile(todos, fileName=FILENAME)
                 appWindow['TaskITEMS'].update(values=todos)
                 appWindow['TaskItem'].update(value="")
             except IndexError as e:
