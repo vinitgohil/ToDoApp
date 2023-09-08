@@ -56,6 +56,7 @@ while True:
             todos.append(new_task.capitalize())
             utils.write_taskfile(todos, fileName=FILENAME)
             appWindow['TaskITEMS'].update(values=todos)
+            appWindow['TaskItem'].update(value='')
 
         case "Edit":
             try:
