@@ -14,11 +14,15 @@ st.title("My Todo App")
 st.subheader("Web Application to add tasks to your to-do list")
 st.text("This is to manage your tasks and your productivity")
 
-for task in taskList:
-    st.checkbox(task)
+for index, task in enumerate(taskList):
+    checkboxTask = st.checkbox(task, key=task)
+    if checkboxTask:
+        taskList.pop(index)
+        utils.write_taskfile(taskList)
+        del st.session_state[task]
+        st._rerun()
+
+
 
 st.text_input(label="Enter a Task to do:", placeholder="Add task...",
               on_change=addTask, key='newTask')
-
-print("Hello!")
-st.session_state
