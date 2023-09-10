@@ -4,7 +4,7 @@ from modules import utils
 taskList = utils.read_taskfile()
 
 def addTask():
-    task = st.session_state['newTask']
+    task = st.session_state['newTask'] + "\n"
     taskList.append(task.capitalize())
     utils.write_taskfile(taskList)
 
@@ -19,3 +19,6 @@ for task in taskList:
 
 st.text_input(label="Enter a Task to do:", placeholder="Add task...",
               on_change=addTask, key='newTask')
+
+print("Hello!")
+st.session_state
